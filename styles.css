@@ -1,66 +1,53 @@
-const tagsEl = document.getElementById("tags")
-const textarea = document.getElementById("textarea")
-
-textarea.focus()
-
-textarea.addEventListener("keyup", (e) => {
-    createTags(e.target.value)
-
-    if(e.key === "Enter") {
-        setTimeout(() =>{
-            e.target.value = ""
-        }, 10)
 
 
-        randomSelect()
-    }
-});
-
-function createTags(input) {
-    const tags = input.split(",").filter(tag => tag.trim()
-     !== "").map(tag => tag.trim())
-    
-    tagsEl.innerHTML = ''
-
-    tags.forEach(tag => {
-        const tagEl = document.createElement('span')
-        tagEl.classList.add('tag')
-        tagEl.innerHTML = tag
-        tagsEl.appendChild(tagEl)
-    })
-
+* {
+    box-sizing: border-box;
 }
 
-function randomSelect() {
-    const times = 30
-
-    const interval = setInterval(() => {
-        const randomTag = pickRandomTag()
-
-        highlights(randomTag)
-        setTimeout(() => {
-            unhighlights(randomTag)
-        }, 100)
-    }, 100);
-
-    setTimeout(() => {
-        clearInterval(interval)
-
-        setTimeout(() => {
-            const randTag = pickRandomTag()
-            highlights(randTag)
-        }, 100)
-    }, times * 100)
+body {
+    background-color: #2b88f0;
+    font-family: Arial, Helvetica, sans-serif;
+    display:flex;
+    margin:0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height:100vh;
 }
 
-function pickRandomTag() {
-    const tags = document.querySelectorAll(".tag")
-    return tags[Math.floor(Math.random() * tags.length)]
+h3 {
+    color:white;
+    margin: 10px 0 20px;
+    text-align: center;
 }
 
-function highlights(tag) {
-    tag.classList.add("highlight")
+
+.container {
+    width: 500px
 }
-function unhighlights(tag) {
-    tag.classList.remove("highlight")
+
+#textarea {
+    border: none;
+    display: block;
+    width: 100%;
+    height:100px;
+    font-family:inherit;
+    padding: 10px;
+    margin: 0 0 20px;
+    font-size: 16px;
+}
+
+.tag {
+    background-color: #f0932b;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin: 0 5px 10px 0;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.tag.highlight {
+    background-color: #273c75;
 }
