@@ -68,10 +68,13 @@ h5 {
     margin: 0px 10px 10px 0;
     font-size: 14px;
     display: inline-block;
-
 }
 
 .tag.highlight {
     background-color: lightblue;
     color:black;
+}
+
+#tags {
+    margin-left: 100px;
 }
